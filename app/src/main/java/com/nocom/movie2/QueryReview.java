@@ -20,7 +20,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
-import java.util.List;
 
 
 public final class QueryReview {
@@ -33,7 +32,7 @@ public final class QueryReview {
 
     private QueryReview() {
     }
-    public static List<Movie_detail_Activity> fetchReviewData(String requestUrl) throws JSONException {
+    public static ArrayList<Review> fetchReviewData(String requestUrl) throws JSONException {
 
         URL url = createUrl(requestUrl);
         // URL url2 = createUrl(requestUrl);
@@ -48,7 +47,7 @@ public final class QueryReview {
         }
 
         // Extract relevant fields from the JSON response and create a list of {@link Movies}s
-        List<Movie_detail_Activity> movies2 = extractFeatureFromJson(jsonResponse);//,jsonResponse2);
+        ArrayList<Review> movies2 = extractFeatureFromJson(jsonResponse);//,jsonResponse2);
 
         // Return the list of {@link Earthquake}s
         return movies2;
@@ -139,7 +138,7 @@ public final class QueryReview {
                  * parsing the given JSON response.
     */
 
-    private static List<Movie_detail_Activity> extractFeatureFromJson(String moviejson) throws JSONException {
+    private static ArrayList<Review> extractFeatureFromJson(String moviejson) throws JSONException {
         // If the JSON string is empty or null, then return early.
         if (TextUtils.isEmpty(moviejson)) {
             return null;
@@ -148,7 +147,7 @@ public final class QueryReview {
         // return null;
 
         // }
-        List<Movie_detail_Activity> movies = new ArrayList<>();
+        ArrayList<Review> movies = new ArrayList<>();
 
 
         try {
@@ -163,7 +162,7 @@ public final class QueryReview {
 
                 JSONObject currentMovie = Moviearray.getJSONObject(J);
                 String content = currentMovie.getString("content");
-                Movie_detail_Activity movie = new Movie_detail_Activity(content);
+                Review movie = new Review(content);
                 movies.add(movie);
             }
 

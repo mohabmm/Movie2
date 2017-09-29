@@ -16,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,6 +24,7 @@ import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import data.MovieContract;
@@ -46,6 +48,7 @@ public class Movie_detail_Activity extends AppCompatActivity {
     TextView reviews;
     Movie currentMovie;
     Button TrailerButton;
+    private TrailerAdapter mAdapter;
     //TextView review ;
     Button button;
     MovieCursorAdapter movieCursorAdapter;
@@ -80,6 +83,9 @@ public class Movie_detail_Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_detail);
+        final ListView trailerListview = (ListView)findViewById(R.id.list);
+        mAdapter = new TrailerAdapter(this, new ArrayList<Review>());
+        trailerListview.setAdapter(mAdapter);
 
         //  Movie_detail_Activity currentMovieActivity;
 
@@ -91,7 +97,7 @@ public class Movie_detail_Activity extends AppCompatActivity {
         TrailerButton = (Button) findViewById(R.id.trailer);
         iamgt = (ImageView) findViewById(R.id.image);//image
         overvview = (TextView) findViewById(R.id.overview);
-        reviews = ((TextView) findViewById(R.id.review));
+        //reviews = ((TextView) findViewById(R.id.review));
         //review=(TextView)findViewById(R.id.review);
         title = (TextView) findViewById(R.id.title);
         releasedate = (TextView) findViewById(R.id.releasedate);
@@ -206,13 +212,13 @@ public class Movie_detail_Activity extends AppCompatActivity {
         }
     }
 
-    private class QuakeRevs extends AsyncTask<String, Void, List<Movie_detail_Activity>> {
+    private class QuakeRevs extends AsyncTask<String, Void, ArrayList<Review>> {
 
         private ProgressDialog progressDialog;
 
         @Override
-        protected List<Movie_detail_Activity> doInBackground(String... strings) {
-            List<Movie_detail_Activity> result = null;
+        protected ArrayList<Review> doInBackground(String... strings) {
+            ArrayList<Review> result = null;
             if (Looper.myLooper() == null)
                 Looper.prepare();
 
@@ -230,10 +236,12 @@ public class Movie_detail_Activity extends AppCompatActivity {
         }
 
         @Override
-        protected void onPostExecute(List<Movie_detail_Activity> movie_detail_activities) {
-            super.onPostExecute(movie_detail_activities);
-            reviews.setText(rev);
-            Log.e("review text ",rev);
+        protected void onPostExecute(ArrayList<Review> data) {
+            super.onPostExecute(data);
+            if (data != null && !data.isEmpty()) {
+                mAdapter.addAll(data);
+                Log.e("review text ", rev);
+            }
         }
     }
 }

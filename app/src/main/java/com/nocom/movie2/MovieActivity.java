@@ -34,8 +34,8 @@ import static android.R.attr.id;
 public class MovieActivity extends AppCompatActivity {
 
     public static final String Log_TAG = MovieActivity.class.getName();
-    private static final String MOST_POPULAR = "https://api.themoviedb.org/3/movie/popular?api_key=###&language=en-US&page=1";
-    private static final String HIGHEST_RATED = "https://api.themoviedb.org/3/movie/top_rated?api_key=###&language=en-US&page=1";
+    private static final String MOST_POPULAR = "https://api.themoviedb.org/3/movie/popular?api_key=##&language=en-US&page=1";
+    private static final String HIGHEST_RATED = "https://api.themoviedb.org/3/movie/top_rated?api_key=##&language=en-US&page=1";
 
     private static final int MOVIE_LOADER_ID = 1;
     Bundle bundle;
