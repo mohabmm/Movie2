@@ -83,7 +83,7 @@ public class Movie_detail_Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_detail);
-        final ListView trailerListview = (ListView)findViewById(R.id.list);
+        final ListView trailerListview = (ListView) findViewById(R.id.list);
         mAdapter = new TrailerAdapter(this, new ArrayList<Review>());
         trailerListview.setAdapter(mAdapter);
 
@@ -122,7 +122,7 @@ public class Movie_detail_Activity extends AppCompatActivity {
 
             REVIEW_WEBSITE = "https://api.themoviedb.org/3/movie/" + currentMovie.getId() + "/reviews?api_key=###&language=en-US"; // please enter your key
 
-            TRAILER_WEBSITE = "https://api.themoviedb.org/3/movie/" + currentMovie.getId() + "/videos?api_key=###&language=en-US"; // please enter your api key
+            TRAILER_WEBSITE = "https://api.themoviedb.org/3/movie/" + currentMovie.getId() + "/videos?api_key=##&language=en-US"; // please enter your api key
 
 
         }
@@ -175,8 +175,6 @@ public class Movie_detail_Activity extends AppCompatActivity {
         // Insert the content values via a ContentResolver
         Uri uri = getContentResolver().insert(MovieContract.MovieEntry.CONTENT_URI, contentValues);
 
-        // COMPLETED (8) Display the URI that's returned with a Toast
-        // [Hint] Don't forget to call finish() to return to MainActivity after this insert is complete
         if (uri != null) {
             Toast.makeText(getBaseContext(), "movie is added ", Toast.LENGTH_LONG).show();
         }
@@ -238,10 +236,18 @@ public class Movie_detail_Activity extends AppCompatActivity {
         @Override
         protected void onPostExecute(ArrayList<Review> data) {
             super.onPostExecute(data);
+
             if (data != null && !data.isEmpty()) {
-                mAdapter.addAll(data);
-                Log.e("review text ", rev);
+
+                for(Review review : data){
+                    Log.i("DATA: ", review.getReview());
+                    mAdapter.addAll(data);
+                }
+
+
+
+                }
             }
         }
     }
-}
+
