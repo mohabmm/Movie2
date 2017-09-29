@@ -30,9 +30,7 @@ import java.util.List;
 import data.MovieContract;
 import data.MovieCursorAdapter;
 
-/**
- * Created by Moha on 9/13/2017.
- */
+
 public class Movie_detail_Activity extends AppCompatActivity {
     static String key = "";
     static String rev = "";
