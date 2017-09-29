@@ -1,5 +1,5 @@
 package com.nocom.movie2;
-
+//
 import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.ContentValues;
@@ -30,7 +30,7 @@ import java.util.List;
 import data.MovieContract;
 import data.MovieCursorAdapter;
 
-//
+//;
 public class Movie_detail_Activity extends AppCompatActivity {
     static String key = "";
     static String rev = "";
