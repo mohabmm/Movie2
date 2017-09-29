@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">MovieAPP</string>4
+    <string name="action_Most_Popular">Most Popular</string>
+
+    <string name="action_Highest_Rated">Highets Rated </string>
+    <string name="MovieDetail" > MovieDetails</string>
+    <string name="Favorites">Favorite</string>
+
+</resources>
